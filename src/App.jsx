@@ -14,7 +14,7 @@ function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-hidden">
       <Navbar onCartClick={() => setIsCartOpen(true)} />
       <Hero />
       <Menu />

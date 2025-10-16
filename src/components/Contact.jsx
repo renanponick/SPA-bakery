@@ -77,7 +77,7 @@ const Contact = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="flex items-start space-x-4 p-6 bg-card rounded-xl hover:shadow-lg transition-shadow"
+                className="flex items-start space-x-4 px-2 py-4 lg:p-6 bg-card rounded-xl hover:shadow-lg transition-shadow"
               >
                 <div className="flex-shrink-0 w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center">
                   <info.icon className="w-6 h-6 text-primary" />

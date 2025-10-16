@@ -3,7 +3,7 @@ import { ShoppingCart, Sun, Moon, Menu, X } from 'lucide-react';
 import { useTheme } from '../hooks/useTheme';
 import { useCart } from '../hooks/useCart';
 import { scrollToSection } from '../utils/helpers';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 
 const Navbar = ({ onCartClick }) => {
   const { theme, toggleTheme } = useTheme();
@@ -34,11 +34,11 @@ const Navbar = ({ onCartClick }) => {
   };
 
   return (
-    <motion.nav
+    <nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
+        isScrolled || isMobileMenuOpen
           ? 'bg-background/95 backdrop-blur-md shadow-lg'
           : 'bg-background/80 backdrop-blur-sm'
       }`}
@@ -46,7 +46,7 @@ const Navbar = ({ onCartClick }) => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <motion.div
+          <div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
@@ -56,12 +56,12 @@ const Navbar = ({ onCartClick }) => {
             <h1 className="text-2xl font-bold text-primary">
               Padaria Artesanal
             </h1>
-          </motion.div>
+          </div>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
             {menuItems.map((item, index) => (
-              <motion.button
+              <button
                 key={item.id}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -70,14 +70,14 @@ const Navbar = ({ onCartClick }) => {
                 className="text-foreground hover:text-primary transition-colors duration-200 font-medium"
               >
                 {item.label}
-              </motion.button>
+              </button>
             ))}
           </div>
 
           {/* Actions */}
           <div className="flex items-center space-x-4">
             {/* Theme Toggle */}
-            <motion.button
+            <button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={toggleTheme}
@@ -89,10 +89,10 @@ const Navbar = ({ onCartClick }) => {
               ) : (
                 <Sun className="w-5 h-5" />
               )}
-            </motion.button>
+            </button>
 
             {/* Cart Button */}
-            <motion.button
+            <button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={onCartClick}
@@ -101,15 +101,15 @@ const Navbar = ({ onCartClick }) => {
             >
               <ShoppingCart className="w-6 h-6" />
               {itemCount > 0 && (
-                <motion.span
+                <span
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center"
                 >
                   {itemCount}
-                </motion.span>
+                </span>
               )}
-            </motion.button>
+            </button>
 
             {/* Mobile Menu Button */}
             <button
@@ -129,7 +129,7 @@ const Navbar = ({ onCartClick }) => {
         {/* Mobile Menu */}
         <AnimatePresence>
           {isMobileMenuOpen && (
-            <motion.div
+            <div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
@@ -146,11 +146,11 @@ const Navbar = ({ onCartClick }) => {
                   </button>
                 ))}
               </div>
-            </motion.div>
+            </div>
           )}
         </AnimatePresence>
       </div>
-    </motion.nav>
+    </nav>
   );
 };
 
